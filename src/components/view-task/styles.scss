@@ -1,0 +1,21 @@
+.view-task-container {
+  .view-task-header,
+  .description,
+  .subtask-container,
+  .status-container {
+    margin-bottom: 24px;
+  }
+
+  .view-task-header {
+    gap: 15px;
+
+    p {
+      width: 385px;
+    }
+  }
+
+  input[type='submit'] {
+    width: 100%;
+    height: 40px;
+  }
+}

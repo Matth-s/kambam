@@ -1,0 +1,22 @@
+.new-board-form-container {
+  width: 100%;
+  height: auto;
+
+  > p:first-child {
+    margin-bottom: 24px;
+  }
+
+  input[type='text'] {
+    height: 40px;
+    padding: 16px;
+  }
+
+  input:nth-child(2) {
+    width: 100%;
+  }
+
+  input[type='submit'] {
+    width: 100%;
+    height: 40px;
+  }
+}

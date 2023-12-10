@@ -1,0 +1,27 @@
+.subtask-form {
+  height: auto;
+  margin-bottom: 24px;
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  input[type='text'] {
+    width: 385px !important;
+    margin-right: auto;
+  }
+
+  div {
+    button {
+      background-color: transparent;
+    }
+  }
+
+  div:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  .add-subtask {
+    width: 100%;
+  }
+}

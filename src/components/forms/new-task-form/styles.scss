@@ -1,0 +1,14 @@
+.new-task-form-container {
+  > input[type='text'],
+  textarea {
+    width: 100%;
+  }
+
+  input[type='text'] {
+    height: 40px;
+  }
+
+  textarea {
+    height: 112px;
+  }
+}

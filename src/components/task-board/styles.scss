@@ -1,0 +1,11 @@
+.task-container {
+  width: 100%;
+  height: auto;
+  padding: 23px 16px;
+  border: 1px solid blue;
+  cursor: pointer;
+}
+
+.task-container:not(:last-child) {
+  margin-bottom: 20px;
+}

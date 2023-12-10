@@ -1,0 +1,12 @@
+.column-board-container {
+  width: calc(100% - 300px);
+  overflow-x: scroll;
+  padding: 25px;
+  gap: 24px;
+
+  .new-column {
+    width: 280px;
+    min-width: 280px;
+    border-radius: 6px;
+  }
+}

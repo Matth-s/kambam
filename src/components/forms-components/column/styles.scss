@@ -1,0 +1,32 @@
+.column-form {
+  width: 100%;
+  height: auto;
+  margin: 24px 0;
+
+  li {
+    gap: 16px;
+  }
+
+  input {
+    width: 375px;
+    height: 40px;
+  }
+
+  .delete-button {
+    height: 40px;
+    background-color: transparent;
+  }
+
+  .add-button {
+    margin-top: 12px;
+    border-radius: 20px;
+    width: 100%;
+    height: 40px;
+  }
+
+  .form-div {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+  }
+}
