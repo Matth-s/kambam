@@ -5,13 +5,15 @@ import NewBoardForm from '../forms/new-board-form/NewBoardForm';
 import CloseModalButton from '../buttons/close-modal-button/CloseModalButton';
 import ViewTask from '../view-task/ViewTask';
 import NewColumnForm from '../forms/new-column-form/NewColumnForm';
-
-import './styles.scss';
 import NewTaskForm from '../forms/new-task-form/NewTaskForm';
 import EditBoardForm from '../forms/edit-board-form/EditBoardForm';
 
+import './styles.scss';
+import EditTaskForm from '../forms/edit-task-form/EditTaskForm';
+
 export default function Modal() {
   const { modal } = useAppSelector((state) => state.modalSlice);
+  //const {viewTask, boards} = useAppSelector(())
 
   switch (modal) {
     case 'create-board-modal':
@@ -64,6 +66,17 @@ export default function Modal() {
           <CloseModalButton />
           <div className="modal-content">
             <EditBoardForm />
+          </div>
+        </div>,
+        document.body
+      );
+
+    case 'edit-task-modal':
+      return createPortal(
+        <div className="modal-container">
+          <CloseModalButton />
+          <div className="modal-content">
+            <EditTaskForm />
           </div>
         </div>,
         document.body

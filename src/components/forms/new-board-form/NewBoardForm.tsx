@@ -44,11 +44,14 @@ export default function NewBoardForm() {
       .then((res: string /*return id*/) => {
         dispatch(setOpenModal(''));
         navigate(`/boards/${res}`);
-        toastMessage({ message: 'Board creeated', success: true });
+        toastMessage({
+          message: 'Board created successfully',
+          success: true,
+        });
       })
       .catch(() =>
         toastMessage({
-          message: 'Board create failed',
+          message: 'Board created failed',
           success: false,
         })
       )

@@ -2,18 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 interface modalState {
-  modal: string;
+  modal: string | null;
 }
 
 const initialState: modalState = {
-  modal: '',
+  modal: null,
 };
 
 export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    setOpenModal: (state, action: PayloadAction<string>) => {
+    setOpenModal: (state, action: PayloadAction<string | null>) => {
       state.modal = action.payload;
     },
   },

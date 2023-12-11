@@ -28,7 +28,12 @@ export default function Subtask({ subtasks, register }: Props) {
               id={subtask.id}
               {...register(`subtasks.${index}.isCompleted`)}
             />
-            <label htmlFor={subtask.id}>{subtask.title}</label>
+            <label
+              htmlFor={subtask.id}
+              className={`${subtask.isCompleted ? 'completed' : ''}`}
+            >
+              {subtask.title}
+            </label>
           </div>
         ))}
     </div>

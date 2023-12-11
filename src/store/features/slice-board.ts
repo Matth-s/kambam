@@ -48,7 +48,10 @@ export const boardSlice = createSlice({
       state.boards = boardUpdate;
     },
 
-    setViewTask: (state, action: PayloadAction<TasksEntity>) => {
+    setViewTask: (
+      state,
+      action: PayloadAction<TasksEntity | null>
+    ) => {
       state.viewTask = action.payload;
     },
   },

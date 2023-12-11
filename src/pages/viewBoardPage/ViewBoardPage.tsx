@@ -10,7 +10,6 @@ import ContentBoard from '../../components/content-board/ContentBoard';
 
 export default function ViewBoardPage() {
   const dispatch = useAppDispatch();
-
   const { id } = useParams();
   const { isLoading, boards } = useAppSelector(
     (state) => state.boardSlice
@@ -33,7 +32,11 @@ export default function ViewBoardPage() {
 
   return (
     <div>
-      <Header boardName={findBoard.name} idBoard={findBoard.id} />
+      <Header
+        boardName={findBoard.name}
+        idBoard={findBoard.id}
+        buttonActive={findBoard.columns.length > 0 ? true : false}
+      />
       <Main>
         <Aside activeBoard={findBoard.id} />
         <ContentBoard columns={findBoard.columns} />

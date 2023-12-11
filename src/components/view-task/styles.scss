@@ -7,10 +7,29 @@
   }
 
   .view-task-header {
+    position: relative;
     gap: 15px;
 
     p {
       width: 385px;
+    }
+  }
+
+  .settings {
+    position: absolute;
+    top: 100%;
+    right: -30%;
+    width: 192px;
+    height: 64px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid green;
+    background-color: #fff;
+
+    button {
+      text-align: left;
+      width: 100%;
+      background-color: transparent;
     }
   }
 

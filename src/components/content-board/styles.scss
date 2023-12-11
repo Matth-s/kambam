@@ -1,4 +1,5 @@
 .column-board-container {
+  position: relative;
   width: calc(100% - 300px);
   overflow-x: scroll;
   padding: 25px;

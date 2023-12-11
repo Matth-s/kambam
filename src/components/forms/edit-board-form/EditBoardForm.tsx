@@ -44,11 +44,14 @@ export default function EditBoardForm() {
       .unwrap()
       .then(() => {
         dispatch(setOpenModal(''));
-        toastMessage({ message: 'Board edited', success: true });
+        toastMessage({
+          message: 'Board updated successfully',
+          success: true,
+        });
       })
       .catch(() =>
         toastMessage({
-          message: 'Board update failed',
+          message: 'Board updated failed',
           success: false,
         })
       )

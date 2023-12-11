@@ -1,25 +1,28 @@
+import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { TaskValidation } from '../../../validation/forms';
-import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { TasksEntity } from '../../../types/board-schema';
-import { createTaskService } from '../../../services/board-service';
-import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { useParams } from 'react-router-dom';
+
+import Status from '../../forms-components/status/Status';
+import Subtasks from '../../forms-components/subtasks/Subtasks';
+import { updateTaskService } from '../../../services/board-service';
 import { toastMessage } from '../../../helpers/toastConfing';
 
-import Subtasks from '../../forms-components/subtasks/Subtasks';
-import Status from '../../forms-components/status/Status';
-
-import './styles.scss';
-
-export default function NewTaskForm() {
-  const dispatch = useAppDispatch();
+export default function EditTaskForm() {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
+
+  const { viewTask, boards } = useAppSelector(
+    (state) => state.boardSlice
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { boards } = useAppSelector((state) => state.boardSlice);
-
+  if (!viewTask) {
+    return <></>;
+  }
   const findBoard = boards.find((board) => board.id === id);
 
   if (!findBoard) {
@@ -30,45 +33,40 @@ export default function NewTaskForm() {
     return item.name;
   });
 
-  const values: TasksEntity = {
-    id: ``,
-    title: '',
-    description: '',
-    status: statusChoice[0],
-    subtasks: [],
-  };
-
   const {
     register,
-    handleSubmit,
     setValue,
     watch,
+    handleSubmit,
     formState: { errors },
   } = useForm({
-    values: values,
+    values: viewTask,
     resolver: zodResolver(TaskValidation),
   });
 
-  async function processForm(data: any) {
-    setIsLoading(false);
+  async function processForm(data: TasksEntity) {
+    setIsLoading(true);
 
     await dispatch(
-      createTaskService({ id: id as string, newTask: data })
+      updateTaskService({
+        id: id as string,
+        newTask: data,
+        oldTask: viewTask as TasksEntity,
+      })
     )
       .unwrap()
       .then(() => {
         toastMessage({
-          message: 'Task created successfully',
+          message: 'Task updated successfully',
           success: true,
         });
       })
       .catch(() =>
         toastMessage({
-          message: 'Task created failed',
+          message: 'Tast update failed',
           success: false,
         })
-      )
-      .finally(() => setIsLoading(false));
+      );
   }
 
   return (

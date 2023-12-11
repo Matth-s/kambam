@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
@@ -13,6 +13,7 @@ import { createColumnService } from '../../../services/board-service';
 import { setOpenModal } from '../../../store/features/slice-modal';
 
 export default function NewColumnForm() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
@@ -21,7 +22,7 @@ export default function NewColumnForm() {
   const findBoard = boards.find((item) => item.id === id);
 
   if (!findBoard) {
-    return;
+    return <></>;
   }
 
   const {
@@ -47,21 +48,25 @@ export default function NewColumnForm() {
     }
   }, []);
 
-  console.log(errors);
-
   async function processForm(data: BoardEntity) {
-    console.log(errors, 'handleSubmit');
+    setIsLoading(true);
+
     await dispatch(createColumnService({ board: data }))
       .unwrap()
       .then(() => {
         dispatch(setOpenModal(''));
         toastMessage({
-          message: 'Board column update',
+          message: 'Column created successfully',
           success: true,
         });
       })
-      .catch((error) => console.log(error))
-      .finally();
+      .catch(() =>
+        toastMessage({
+          message: 'Column created failed',
+          success: false,
+        })
+      )
+      .finally(() => setIsLoading(false));
   }
 
   return (
@@ -74,7 +79,11 @@ export default function NewColumnForm() {
           register={register}
           errors={errors}
         />
-        <input type="submit" value="Create Column" />
+        <input
+          type="submit"
+          value="Create Column"
+          className={isLoading ? 'is-loading' : ''}
+        />
       </form>
     </div>
   );

@@ -19,9 +19,11 @@ import {
   setDeleteBoard,
   setNewBoard,
   setUpdateBoard,
+  setViewTask,
 } from '../store/features/slice-board';
 
 import { v4 as uuidv4 } from 'uuid';
+import { setOpenModal } from '../store/features/slice-modal';
 
 //boards
 export const getAllBoardService = createAsyncThunk(
@@ -103,7 +105,6 @@ export const deleteBoardService = createAsyncThunk(
 export const createColumnService = createAsyncThunk(
   'create column',
   async ({ board }: { board: BoardEntity }, { dispatch }) => {
-    console.log('create column');
     try {
       const boardDocRef = doc(db, 'boards', board.id);
 
@@ -120,6 +121,48 @@ export const createColumnService = createAsyncThunk(
 );
 
 //tasks
+
+export const deleteTaskService = createAsyncThunk(
+  'delete task',
+  async (
+    {
+      boardId,
+      taskStatus,
+      taskId,
+    }: { boardId: string; taskId: string; taskStatus: string },
+    { dispatch }
+  ) => {
+    try {
+      const boardRef = doc(db, 'boards', boardId);
+      const boardSnap = await getDoc(boardRef);
+
+      if (!boardSnap.exists()) {
+        throw new Error("This board doesn't exist");
+      }
+
+      const boardData = boardSnap.data() as BoardEntity;
+
+      boardData.columns = boardData.columns.map((column) => {
+        if (column.name === taskStatus) {
+          column.tasks = column.tasks.filter(
+            (task) => task.id !== taskId
+          );
+        }
+        return column;
+      });
+
+      await updateDoc(boardRef, {
+        ...boardData,
+      });
+
+      dispatch(setUpdateBoard(boardData));
+      dispatch(setOpenModal(null));
+      dispatch(setViewTask(null));
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
 export const updateTaskService = createAsyncThunk(
   'update task',
@@ -230,6 +273,8 @@ export const createTaskService = createAsyncThunk(
       await updateDoc(boardRef, { ...boardUpdate });
 
       dispatch(setUpdateBoard(boardUpdate));
+      dispatch(setViewTask(newTask));
+      dispatch(setOpenModal('view-task'));
 
       return taskWithId;
     } catch (error) {

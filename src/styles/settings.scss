@@ -13,6 +13,11 @@ input[type='submit'] {
   opacity: 0.5;
 }
 
+.is-disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 button {
   cursor: pointer;
 }
