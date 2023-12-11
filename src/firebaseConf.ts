@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDTpfca1eiQja6T5pVSDam4_RzcVPRg46w',
-  authDomain: 'kambam-64c87.firebaseapp.com',
-  projectId: 'kambam-64c87',
-  storageBucket: 'kambam-64c87.appspot.com',
-  messagingSenderId: '721663393202',
-  appId: '1:721663393202:web:f939fa081a6d31dbd6b8ab',
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_API_ID,
 };
 
 // Initialize Firebase
