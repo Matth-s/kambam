@@ -1,0 +1,34 @@
+.theme-container {
+  gap: 15px;
+  margin: auto;
+  width: 250px;
+  height: 48px;
+
+  .status-theme {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    border-radius: 12px;
+    border: 1px solid green;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    background-color: red;
+    transition: transform 0.2s;
+  }
+
+  .left {
+    transform: translate(0, -50%);
+  }
+
+  .right {
+    transform: translate(100%, -50%);
+  }
+}

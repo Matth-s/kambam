@@ -12,7 +12,7 @@ type Props = {
 
 export default function ContentBoard({ columns }: Props) {
   return (
-    <div className="column-board-container flex">
+    <div className={`column-board-container flex`}>
       {columns.length > 0 ? (
         <>
           {columns.map((item) => (

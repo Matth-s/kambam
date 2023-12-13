@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .header-container {
   display: flex;
   width: 100%;
@@ -22,7 +24,8 @@
 
   .add-new-task-button {
     margin: 0 24px 0 auto;
-    background-color: red;
+    background-color: $color-main-purle;
+    color: $color-white;
   }
 
   .settings {

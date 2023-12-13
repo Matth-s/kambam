@@ -1,0 +1,46 @@
+@import './colors.scss';
+
+.light {
+  .header-container,
+  .aside-container,
+  .task-container {
+    background-color: $color-white;
+  }
+
+  .column-board-container {
+    background-color: $color-light-blue;
+  }
+
+  .header-container {
+    .right-part {
+      border: 1px solid $color-lines-light;
+    }
+
+    h2 {
+      color: $color-black;
+    }
+  }
+}
+
+.dark {
+  .header-container,
+  .aside-container,
+  .task-container,
+  .new-column {
+    background-color: $color-dark-grey;
+  }
+
+  .column-board-container {
+    background-color: $color-very-dark-grey-dark;
+  }
+
+  .header-container {
+    .right-part {
+      border: 1px solid $color-lines-dark;
+    }
+
+    h2 {
+      color: $color-white;
+    }
+  }
+}
